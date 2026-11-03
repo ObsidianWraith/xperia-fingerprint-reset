@@ -1,0 +1,27 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-feature android:name="android.hardware.fingerprint" android:required="false" />
+    <application android:allowBackup="false" android:fullBackupContent="false" android:dataExtractionRules="@xml/data_extraction_rules" android:label="Fingerprint Reset"
+        android:icon="@drawable/ic_fingerprint" android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name=".ResetService" android:exported="false" android:foregroundServiceType="shortService" />
+        <service android:name=".FpResetTileService" android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:icon="@drawable/ic_fingerprint" android:label="Reset fingerprint">
+            <intent-filter><action android:name="android.service.quicksettings.action.QS_TILE" /></intent-filter>
+        </service>
+        <receiver android:name=".FpResetWidget" android:exported="false" android:label="Fingerprint Reset">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/reset_widget" />
+        </receiver>
+    </application>
+</manifest>

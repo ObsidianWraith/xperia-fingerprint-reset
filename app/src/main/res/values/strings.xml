@@ -1,0 +1,5 @@
+<resources>
+    <string name="widget_title">Reset FP</string>
+    <string name="widget_status">Tap to restart sensor service</string>
+    <string name="widget_description">Restart the fingerprint service using root access.</string>
+</resources>
